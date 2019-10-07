@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetCqs</name>
+    </assembly>
+    <members>
+        <member name="T:DotNetCqs.ApplicationEvent">
+            <summary>
+            Application events are events which represents a change in the application.
+            </summary>
+            <remarks>
+            <para>
+            An application event might for instance be that a new forum post have been made. i.e. events that other parts of the applications can act upon. Application events should not be executed
+            within the same transaction as the command/request that generated the application event. They should instead be queued up and executed within a small time frame.
+            </para>
+            <para>
+            Handlers of application events may modify the application state. For instance by updating a read model (if you follow the CQRS pattern).
+            </para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.ApplicationEvent.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotNetCqs.ApplicationEvent"/> class.
+            </summary>
+        </member>
+        <member name="P:DotNetCqs.ApplicationEvent.EventId">
+            <summary>
+            Id identifying this event instance  (as it might be used in inter process communication).
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.Command">
+            <summary>
+            Commands are instructions that change application state. Do not that it's just the instruction and not the actual state changer (which is the class that implements <see cref="T:DotNetCqs.ICommandHandler`1"/>).
+            </summary>
+            <remarks>
+            <para>
+            Our recommendation is that a command encapsulate an entire use case. A typical command can be <c>PostForumMessage</c> or <c>ApplySeasonalDiscount</c>. But doing so it's
+            much easier to scale the application by moving the command processing to a different server (or servers).
+            </para>
+            <para>
+            Commands do not have a response. Hence you need to assign any id to the command before executing it. If you *really* require a return value, use <see cref="T:DotNetCqs.Request`1"/> instead. Commands
+            uses less system resources though.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.Command.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotNetCqs.Command"/> class.
+            </summary>
+        </member>
+        <member name="P:DotNetCqs.Command.CommandId">
+            <summary>
+            Id identifying this command (as it might be used in inter process communication).
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.DotNetGuidFactory">
+            <summary>
+            Uses .NET to generated Guids
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.IGuidFactory">
+            <summary>
+            GUIDs are the preferred way of identifying items. But as GUIDs can hurt data performance we've using this interface to allow you to specialize the GUID creation.
+            </summary>
+            <remarks>
+            <para>
+            To get better performance you can use COMBs instead of GUIDs. They look the same but give better performance. Another name for them is sequential GUIDs.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.IGuidFactory.Create">
+            <summary>
+            Create a new GUID.
+            </summary>
+            <returns>Created GUID.</returns>
+        </member>
+        <member name="M:DotNetCqs.DotNetGuidFactory.Create">
+            <summary>
+            Create a new GUID.
+            </summary>
+            <returns>
+            Created GUID.
+            </returns>
+        </member>
+        <member name="T:DotNetCqs.GuidFactory">
+            <summary>
+            Class uses to generate GUIDs. Read the class documentation of <see cref="T:DotNetCqs.IGuidFactory"/> for more information.
+            </summary>
+            <remarks>
+            <para>Uses <see cref="T:DotNetCqs.DotNetGuidFactory"/> per default.</para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.GuidFactory.Assign(DotNetCqs.IGuidFactory)">
+            <summary>
+            Assign a new factory implementation
+            </summary>
+            <param name="factory">factory to use</param>
+            <exception cref="T:System.ArgumentNullException">factory</exception>
+        </member>
+        <member name="M:DotNetCqs.GuidFactory.Create">
+            <summary>
+            Creates a new GUID.
+            </summary>
+            <returns>Generated GUID.</returns>
+        </member>
+        <member name="T:DotNetCqs.IApplicationEventSubscriber`1">
+            <summary>
+            Subscribes on application events.
+            </summary>
+            <typeparam name="TEvent">Type of event to subscribe on</typeparam>
+            <remarks>
+            <para>Handlers are typically discovered by using an inversion of control container.</para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.IApplicationEventSubscriber`1.HandleAsync(`0)">
+            <summary>
+            Process an event asynchronously.
+            </summary>
+            <param name="e">event to process</param>
+            <returns>Task to wait on.</returns>
+        </member>
+        <member name="T:DotNetCqs.ICommandBus">
+            <summary>
+            Used to deliver commands for execution
+            </summary>
+        </member>
+        <member name="M:DotNetCqs.ICommandBus.ExecuteAsync``1(``0)">
+            <summary>
+            Request that a command should be executed.
+            </summary>
+            <typeparam name="T">Type of command to execute.</typeparam>
+            <param name="command">Command to execute</param>
+            <returns>Task which completes once the command has been delivered (and NOT when it has been executed).</returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
+            <remarks>
+            <para>
+            The actual execution of an command can be done anywhere at any time. Do not expect the command to be executed just because this method returns. That just means
+            that the command have been successfully delivered (to a queue or another process etc) for execution.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:DotNetCqs.ICommandHandler`1">
+            <summary>
+            Used to execute a command
+            </summary>
+            <typeparam name="TCommand">Type of command to execute.</typeparam>
+            <remarks>
+            <para>
+            There may only be one command handler per command. Anything else will result in an exception.
+            </para>
+            <para>
+            Command handlers are typically discovered by using a inversion of control container.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.ICommandHandler`1.ExecuteAsync(`0)">
+            <summary>
+            Execute a command asynchronously.
+            </summary>
+            <param name="command">Command to execute.</param>
+            <returns>Task which will be completed once the command has been executed.</returns>
+        </member>
+        <member name="T:DotNetCqs.IEventBus">
+            <summary>
+            Used to deliver application events.
+            </summary>
+        </member>
+        <member name="M:DotNetCqs.IEventBus.PublishAsync``1(``0)">
+            <summary>
+            Publish a new application event.
+            </summary>
+            <typeparam name="TApplicationEvent">Type of event to publish.</typeparam>
+            <param name="e">Event to publish, must be serializable.</param>
+            <returns>Task triggered once the event has been delivered.</returns>
+        </member>
+        <member name="T:DotNetCqs.IQuery">
+            <summary>
+                A request to fetch information from the data source.
+            </summary>
+            <remarks>
+                <para>
+                    It's highly recommended that you create queries per use case and not per data source design. For instance you
+                    can
+                    have a query looking like this:
+                </para>
+                <code>
+            <![CDATA[
+            public class FetchTasksForFirstPage : Query<FirstPageTask[]>
+            {
+                public FetchTasksForFirstPage(Guid userId)
+                {
+                    if (userId == Guid.Empty) throw new ArgumentNullException("userId");
+            
+                    UserId = userId;
+                }
+            
+                public Guid UserId { get; private set; }
+            }
+            ]]>
+            </code>
+                <para>
+                    With the following result class:
+                </para>
+                <example>
+            <code>
+            public class FirstPageTask
+            {
+                public string CreatorUserId { get; set; }
+                public string CreatorName { get; set; }
+                public string TaskId { get; set; }
+                public string TaskName { get; set; }
+                public int Importance { get; set; }
+                public string UpdaterUserId { get; set; }
+                public string UpdaterName { get; set; }
+            }
+            </code>
+                </example>
+                <para>
+                    That result is actually a join between three tables.
+                </para>
+                <para>
+                    By designing your queries like that you make it a lot easier to scale your application at a later point.
+                    Because now you have totally abstracted away the data source. that
+                    means that you in the future your move from simple joins to views or stored procedures. You could even start to
+                    create a read model (i.e. a separate database specialized for reads).
+                </para>
+                <para>
+                    Hence my recommendation is: Create a query for every specific use case, and always try to flatten the result.
+                    It makes it so much easier to adapt the backend to the *current* requirements.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:DotNetCqs.IQuery.QueryId">
+            <summary>
+                Query identity. Required to identify queries and their replies (as a query can be used in inter process
+                documentation).
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.IQueryBus">
+            <summary>
+            The query bus is used to send query requests and wait for the answer.
+            </summary>
+            <remarks>
+            <para>What queries are is defined by the <see cref="T:DotNetCqs.IQuery"/> interface</para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.IQueryBus.QueryAsync``1(DotNetCqs.Query{``0})">
+            <summary>
+            Invoke a query and wait for the result
+            </summary>
+            <typeparam name="TResult">Type of result that the query will return</typeparam>
+            <param name="query">Query to execute.</param>
+            <returns>Task which will complete once we've got the result (or something failed, like a query wait timeout).</returns>
+            <exception cref="T:System.ArgumentNullException">query</exception>
+        </member>
+        <member name="T:DotNetCqs.IQueryHandler`2">
+            <summary>
+            Used to execute the actual query (and deliver a result)
+            </summary>
+            <typeparam name="TQuery">Query to execute</typeparam>
+            <typeparam name="TResult">Type of result which has been requested.</typeparam>
+        </member>
+        <member name="M:DotNetCqs.IQueryHandler`2.ExecuteAsync(`0)">
+            <summary>
+            Method used to execute the query
+            </summary>
+            <param name="query">Query to execute.</param>
+            <returns>Task which will contain the result once completed.</returns>
+        </member>
+        <member name="T:DotNetCqs.IRequest">
+            <summary>
+            A request is the first part of the request/reply pattern. 
+            </summary>
+            <remarks>
+            This interface is required so that we can get the request id in a non-generic way.
+            </remarks>
+            <seealso cref="T:DotNetCqs.Request`1"/>
+        </member>
+        <member name="P:DotNetCqs.IRequest.RequestId">
+            <summary>
+            Get id identifying this request (so that we know when we get the correct reply).
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.IRequestHandler`2">
+            <summary>
+            Used to execute a request and generate the reply.
+            </summary>
+            <typeparam name="TRequest">Type of request</typeparam>
+            <typeparam name="TReply">Type of reply</typeparam>
+        </member>
+        <member name="M:DotNetCqs.IRequestHandler`2.ExecuteAsync(`0)">
+            <summary>
+            Execute the request and generate a reply.
+            </summary>
+            <param name="request">Request to execute</param>
+            <returns>Task which will contain the reply once completed.</returns>
+        </member>
+        <member name="T:DotNetCqs.IRequestReplyBus">
+            <summary>
+            The request/reply bus is used to send the request and then wait for the reply.
+            </summary>
+            <seealso cref="T:DotNetCqs.Request`1"/>
+        </member>
+        <member name="M:DotNetCqs.IRequestReplyBus.ExecuteAsync``1(DotNetCqs.Request{``0})">
+            <summary>
+            Invoke a request and wait for the reply
+            </summary>
+            <typeparam name="TReply">Type of reply that we should get for the request.</typeparam>
+            <param name="request">Request that we want a reply for.</param>
+            <returns>Task which will complete once we've got the result (or something failed, like a request wait timeout).</returns>
+            <exception cref="T:System.ArgumentNullException">query</exception>
+        </member>
+        <member name="T:DotNetCqs.NamespaceDoc">
+            <summary>
+                Asynchronous Command/Query separation library definition.
+            </summary>
+            <remarks>
+                <para>
+                    Contains all interfaces which are required to create a fully functional Command/Query separation library.
+                </para>
+                <para>
+                    The purpose of the library is to allow you to smart small and refactor your application with minimal changes
+                    when the requirement to scale arises.
+                </para>
+            </remarks>
+        </member>
+        <member name="T:DotNetCqs.Query`1">
+            <summary>
+                Query base class.
+            </summary>
+            <typeparam name="TResult">Type of result that the query will return</typeparam>
+            <remarks>
+                <para>
+                    Queries may not change the application state. They are only used to fetch pre-generated data. And by following
+                    that principle we can introduce caching later on.
+                </para>
+                <para>
+                    Uses <see cref="T:DotNetCqs.GuidFactory"/> to assign the <see cref="P:DotNetCqs.Query`1.QueryId"/>.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.Query`1.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:DotNetCqs.Query`1"/> class.
+            </summary>
+        </member>
+        <member name="P:DotNetCqs.Query`1.QueryId">
+            <summary>
+                Gets unique identifier for this query.
+            </summary>
+        </member>
+        <member name="T:DotNetCqs.Request`1">
+            <summary>
+            Request base class (for Request/Reply). 
+            </summary>
+            <typeparam name="TReply">Type of reply that the request will get.</typeparam>
+            <remarks>
+            <para>
+            Sometimes you can't avoid to wait on an reply before continuing. Typically when the server side generates some kind of information (other than an ID). It's in these cases
+            that you should use Request/Reply. Try to use <see cref="T:DotNetCqs.Command"/> otherwise as it gives much better performance.
+            </para>
+            <para>Uses <see cref="T:DotNetCqs.GuidFactory"/> to assign the <see cref="P:DotNetCqs.Request`1.RequestId"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:DotNetCqs.Request`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotNetCqs.Request`1"/> class.
+            </summary>
+        </member>
+        <member name="P:DotNetCqs.Request`1.RequestId">
+            <summary>
+            Gets unique identifier for this request (so that we can identify replies).
+            </summary>
+        </member>
+    </members>
+</doc>

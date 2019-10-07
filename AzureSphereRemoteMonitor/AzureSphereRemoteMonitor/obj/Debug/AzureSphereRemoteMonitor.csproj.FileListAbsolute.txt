@@ -1,0 +1,127 @@
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe.config
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.pdb
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Amqp.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Owin.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.Client.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.dll
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.pdb
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.pdb
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.xml
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csprojAssemblyReference.cache
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.Properties.Resources.resources
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.GenerateResource.cache
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CoreCompileInputs.cache
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CopyComplete
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.exe
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.pdb
+C:\Users\ShiJiong\Documents\Visual Studio 2017\Projects\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.Form1.resources
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csprojAssemblyReference.cache
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.exe
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.pdb
+E:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csprojAssemblyReference.cache
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csprojAssemblyReference.cache
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe.config
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.pdb
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Amqp.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Owin.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.Client.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Runtime.Serialization.Primitives.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Algorithms.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Encoding.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Primitives.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.dll
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.pdb
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.pdb
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.xml
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.FormMain.resources
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.Properties.Resources.resources
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.GenerateResource.cache
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CoreCompileInputs.cache
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CopyComplete
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.exe
+F:\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.pdb
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe.config
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.exe
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\AzureSphereRemoteMonitor.pdb
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Amqp.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Owin.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.Client.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.WebSockets.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Runtime.Serialization.Primitives.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Algorithms.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Encoding.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.Primitives.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.dll
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.pdb
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\DotNetCqs.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Azure.Devices.Shared.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.Owin.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.ServiceBus.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\Newtonsoft.Json.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Net.Http.Formatting.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\System.Web.Http.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.pdb
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\bin\Debug\WindowsAzure.ServiceBus.Cqs.xml
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.FormMain.resources
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.Properties.Resources.resources
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.GenerateResource.cache
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CoreCompileInputs.cache
+E:\AzureSphereChallenge\AzureSphereRemoteMonitor\AzureSphereRemoteMonitor\obj\Debug\AzureSphereRemoteMonitor.csproj.CopyComplete

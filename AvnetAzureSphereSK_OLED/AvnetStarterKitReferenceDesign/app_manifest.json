@@ -1,0 +1,23 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Avnet-Starter-Kit-reference-V1.0",
+  "ComponentId": "685f13af-25a5-40b2-8dd8-8cbc253ecbd8",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [ "Avnet-Starter-Kit-reference-V1.0" ],
+  "Capabilities": {
+    //// M4 application's ComponentID
+    "AllowedApplicationConnections": [ "005180bc-402f-4cb3-a662-72937dbcde47" ],
+    //// IoT Central application connection (Replace the xxxx placeholder with your IOTC application's ComponentID)
+    "AllowedConnections": [ "MyIoTHubSample.azure-devices.net" ],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [ 0, 4, 5, 8, 9, 10, 12, 13, 34, 1 ],
+    "Uart": ["ISU0"],
+    "I2cMaster": [ "ISU2" ],
+    "SpiMaster": [],
+    "WifiConfig": true,
+    "NetworkConfig": false,
+    "SystemTime": false
+  },
+  "ApplicationType": "Default"
+}
