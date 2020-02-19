@@ -82,6 +82,8 @@ extern bool moveRight;
 extern bool moveForward;
 extern bool moveBack;
 extern bool moveStop;
+extern bool speedUp;
+extern bool slowDown;
 
 // Support functions.
 static void TerminationHandler(int signalNumber);
@@ -104,6 +106,9 @@ int clickSocket1Relay2Fd = -1;
 
 //Uart1 jiongshi
 static int uart0Fd = -1;
+
+//default car speed
+int carSpeed = 5;
 
 //// ADC connection
 static const char rtAppComponentId[] = "005180bc-402f-4cb3-a662-72937dbcde47";
@@ -295,7 +300,36 @@ static void CarControlHandler()
 		SendUartMessage(uart0Fd, commandSequence);
 		Log_Debug("INFO: Send message '%s' to UART0\n", "stop");
 	}
-	
+	if (speedUp)
+	{
+		speedUp = false;
+		carSpeed = carSpeed + 1;
+		//the max carspeed is 10
+		if (carSpeed > 10)
+			carSpeed = 10;
+		commandSequence[0] = 0xff;
+		commandSequence[1] = 0x02;
+		commandSequence[2] = 0x01;
+		commandSequence[3] = carSpeed;
+		commandSequence[4] = 0xff;
+		SendUartMessage(uart0Fd, commandSequence);
+		Log_Debug("INFO: Send message '%s' to UART0\n", "SpeedUp");
+	}
+	if (slowDown)
+	{
+		slowDown = false;
+		carSpeed = carSpeed - 1;
+		//the min carspeed is 1
+		if (carSpeed < 1)
+			carSpeed = 1;
+		commandSequence[0] = 0xff;
+		commandSequence[1] = 0x02;
+		commandSequence[2] = 0x01;
+		commandSequence[3] = carSpeed;
+		commandSequence[4] = 0xff;
+		SendUartMessage(uart0Fd, commandSequence);
+		Log_Debug("INFO: Send message '%s' to UART0\n", "SpeedUp");
+	}
 }
 
 /// <summary>
@@ -570,6 +604,8 @@ static int InitPeripheralsAndHandlers(void)
 	moveForward = false;
 	moveBack = false;
 	moveStop = true;
+	speedUp = false;
+	slowDown = false;
 
 	if (initI2c() == -1) {
 		return -1;

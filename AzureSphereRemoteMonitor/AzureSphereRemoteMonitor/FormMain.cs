@@ -246,5 +246,15 @@ namespace AzureSphereRemoteMonitor
         {
             SendCloudToDeviceMessageAsync("Right");
         }
+
+        private void buttonSpeedup_Click(object sender, EventArgs e)
+        {
+            SendCloudToDeviceMessageAsync("Up");
+        }
+
+        private void buttonSlowdown_Click(object sender, EventArgs e)
+        {
+            SendCloudToDeviceMessageAsync("Down");
+        }
     }
 }

@@ -1,0 +1,836 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WindowsAzure.ServiceBus.Cqs</name>
+    </assembly>
+    <members>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBus">
+            <summary>
+            Used to send messages over Azure queues.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCommandBus.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBus"/> class.
+            </summary>
+            <param name="connectionString">The connection string as shown in the Azure management web</param>
+            <param name="queueName">Queue name as you configured it in the Azure management web.</param>
+            <exception cref="T:System.ArgumentNullException">
+            connectionString
+            or
+            queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCommandBus.ExecuteAsync``1(``0)">
+            <summary>
+            Request that a command should be executed.
+            </summary>
+            <typeparam name="T">Type of command to execute.</typeparam>
+            <param name="command">Command to execute</param>
+            <returns>
+            Task which completes once the command has been delivered (and NOT when it has been executed).
+            </returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener">
+            <summary>
+                Used to receive command bus messages.
+            </summary>
+            <remarks>
+            <para>Creates a new scoped container for every received command.</para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener.#ctor(System.String,System.String,WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer)">
+            <summary>
+                Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener"/> class.
+            </summary>
+            <param name="connectionString">Connection string as returned from the Azure management web.</param>
+            <param name="queueName">Name of the queue (name from the Azure management web).</param>
+            <param name="container">Inversion of control container to use to identify command handlers.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener.Start">
+            <summary>
+                Begin listening for messages.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener.Stop">
+            <summary>
+                Stop listening for messages.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener.SuccessTask">
+            <summary>
+            Task to invoke when a query have been handled successfully (like resolve and commit an unit of work).
+            </summary>
+            <example>
+            <code>
+            <![CDATA[
+            bus.SuccessTask = container => { container.Resolve<IUnitOfWork>().SaveChanges(); };
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureCommandBusListener.CommandBusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the command bus.
+            </summary>
+            <remarks>
+                <para>
+                    Make sure that you specify <see cref="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.MessageTask"/>.
+                </para>
+                <para>
+                    Use the event to decide what to do with the message. You can put it back in the queue or mark it as completed
+                    to remove it. What that actually means is
+                    something you have to read about in the Azure documentation.
+                </para>
+                <para>
+                    The exception <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> should be treated differently from all other exceptions
+                    since it means that the command bus
+                    is broken. Typically because of failure of the underlying queue. Check it's inner exception for more
+                    information.
+                </para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureCqsFactory">
+            <summary>
+            Class which makes it easier to create the different services that this library provides.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureCqsFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCqsFactory"/> class.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureCqsFactory.SettingsProvider">
+            <summary>
+            Used to provide settings for this class.
+            </summary>
+            <value>Default is <see cref="T:WindowsAzure.ServiceBus.Cqs.Configuration.CloudConfigProvider"/></value>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureEventBus">
+            <summary>
+            Used to send messages over Azure queues.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureEventBus.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureEventBus"/> class.
+            </summary>
+            <param name="connectionString">The connection string as shown in the Azure management web</param>
+            <param name="queueName">Queue name as you configured it in the Azure management web.</param>
+            <exception cref="T:System.ArgumentNullException">
+            connectionString
+            or
+            queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureEventBus.PublishAsync``1(``0)">
+            <summary>
+            Request that a command should be executed.
+            </summary>
+            <typeparam name="T">Type of command to execute.</typeparam>
+            <param name="command">Command to execute</param>
+            <returns>
+            Task which completes once the command has been delivered (and NOT when it has been executed).
+            </returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener">
+            <summary>
+                Used to receive command bus messages.
+            </summary>
+            <remarks>
+            <para>Creates a new scoped container for every received command.</para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener.#ctor(System.String,System.String,WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer)">
+            <summary>
+                Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener"/> class.
+            </summary>
+            <param name="connectionString">Connection string as returned from the Azure management web.</param>
+            <param name="queueName">Name of the queue (name from the Azure management web).</param>
+            <param name="container">Inversion of control container to use to identify command handlers.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener.Start">
+            <summary>
+                Begin listening for messages.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener.Stop">
+            <summary>
+                Stop listening for messages.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener.SuccessTask">
+            <summary>
+            Task to invoke when a query have been handled successfully (like resolve and commit an unit of work).
+            </summary>
+            <example>
+            <code>
+            <![CDATA[
+            bus.SuccessTask = container => { container.Resolve<IUnitOfWork>().SaveChanges(); };
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureEventBusListener.BusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the command bus.
+            </summary>
+            <remarks>
+                <para>
+                    Make sure that you specify <see cref="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.MessageTask"/>.
+                </para>
+                <para>
+                    Use the event to decide what to do with the message. You can put it back in the queue or mark it as completed
+                    to remove it. What that actually means is
+                    something you have to read about in the Azure documentation.
+                </para>
+                <para>
+                    The exception <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> should be treated differently from all other exceptions
+                    since it means that the command bus
+                    is broken. Typically because of failure of the underlying queue. Check it's inner exception for more
+                    information.
+                </para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureQueryBus">
+            <summary>
+                Used to handle queries over azure.
+            </summary>
+            <remarks>
+                <para>
+                    This implementation uses queue dialogs to identify queries for specific clients. You must therefore have
+                    activated dialogs on the queues that you've configured for this bus.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureQueryBus.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBus"/> class.
+            </summary>
+            <param name="requestQueueConnectionString">The connection string as shown in the Azure management web</param>
+            <param name="requestQueueName">
+                Queue which queries are sent over. Name as you've configured it in the Azure management
+                web.
+            </param>
+            <param name="resultQueueName">
+                Queue which query results are sent back on. Name as you've configured it in the Azure
+                management web. Dialogs must have been activated for this queue.
+            </param>
+            <remarks>
+                <para>Dialogs must have been configured for the result queue. See class documentation.</para>
+                <para>
+                    It's recommended that the queue timeouts are low (couple of seconds) if the clients are web users. Otherwise
+                    you'll get a lot of work done without anyone using the result (as web users can have gone to another page
+                    instead).
+                </para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+                requestQueueConnectionString
+                or
+                queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureQueryBus.Dispose">
+            <summary>
+                Closes both queues and closes the session.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureQueryBus.QueryAsync``1(DotNetCqs.Query{``0})">
+            <summary>
+                Invoke a query and wait for the result
+            </summary>
+            <typeparam name="TResult">Type of result that the query will return</typeparam>
+            <param name="query">Query to execute.</param>
+            <returns>Task which will complete once we've got the result (or something failed, like a query wait timeout).</returns>
+            <exception cref="T:System.ArgumentNullException">query</exception>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureQueryBus.TimeToLive">
+            <summary>
+                How long messages can live on the queue
+            </summary>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureQueryBus.BusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the query bus which is not related to a specific query.
+            </summary>
+            <remarks>
+                <para>this event typically means that the bus is in an inconsistent state. You probably have to recreate it.</para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureQueryBusListener">
+            <summary>
+            The server side part of the query bus.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureQueryBusListener.#ctor(System.String,System.String,System.String,System.String,WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBus"/> class.
+            </summary>
+            <param name="requestQueueConnectionString">The connection string as shown in the Azure management web</param>
+            <param name="requestQueueName">Queue which queries are sent over. i.e. the queue that this class is going to read from. Name as specified in the Azure management web.</param>
+            <param name="replyConnectionString"></param>
+            <param name="replyQueueName">Queue which query results are sent back on. i.e. the queue that this class is going to send responses on. Name as specified in the Azure management web. Dialogs must have been activated for this queue.</param>
+            <param name="container"></param>
+            <remarks>
+            <para>Dialogs must have been configured for the result queue. See class documentation.</para>
+            <para>It's recommended that the queue timeouts are low (couple of seconds) if the clients are web users. Otherwise you'll get a lot of work done without anyone using the result (as web users can have gone to another page instead).</para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            requestQueueConnectionString
+            or
+            queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureQueryBusListener.Dispose">
+            <summary>
+            Closes both queues and closes the session.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureQueryBusListener.SuccessTask">
+            <summary>
+            Task to invoke when a query have been handled successfully (like resolve and commit an unit of work).
+            </summary>
+            <example>
+            <code>
+            <![CDATA[
+            bus.SuccessTask = container => { container.Resolve<IUnitOfWork>().SaveChanges(); };
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureQueryBusListener.BusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the query bus which is not related to a specific query.
+            </summary>
+            <remarks>
+            <para>this event typically means that the bus is in an inconsistent state. You probably have to recreate it.</para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus">
+            <summary>
+                Used to handle queries over azure.
+            </summary>
+            <remarks>
+                <para>
+                    This implementation uses queue dialogs to identify queries for specific clients. You must therefore have
+                    activated dialogs on the queues that you've configured for this bus.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureCommandBus"/> class.
+            </summary>
+            <param name="requestQueueConnectionString">The connection string as shown in the Azure management web</param>
+            <param name="requestQueueName">
+                Queue which queries are sent over. Name as you've configured it in the Azure management
+                web.
+            </param>
+            <param name="replyQueueName">
+                Queue which query results are sent back on. Name as you've configured it in the Azure
+                management web. Dialogs must have been activated for this queue.
+            </param>
+            <remarks>
+                <para>Dialogs must have been configured for the result queue. See class documentation.</para>
+                <para>
+                    It's recommended that the queue timeouts are low (couple of seconds) if the clients are web users. Otherwise
+                    you'll get a lot of work done without anyone using the result (as web users can have gone to another page
+                    instead).
+                </para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+                requestQueueConnectionString
+                or
+                queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus.Dispose">
+            <summary>
+                Closes both queues and closes the session.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus.ExecuteAsync``1(DotNetCqs.Request{``0})">
+            <summary>
+                Invoke a query and wait for the result
+            </summary>
+            <typeparam name="TReply">Type of result that the query will return</typeparam>
+            <param name="request">Query to execute.</param>
+            <returns>Task which will complete once we've got the result (or something failed, like a query wait timeout).</returns>
+            <exception cref="T:System.ArgumentNullException">query</exception>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus.TimeToLive">
+            <summary>
+                How long messages can live on the queue
+            </summary>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBus.BusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the query bus which is not related to a specific query.
+            </summary>
+            <remarks>
+                <para>this event typically means that the bus is in an inconsistent state. You probably have to recreate it.</para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener">
+            <summary>
+            The server side part of the query bus.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener.#ctor(System.String,System.String,System.String,System.String,WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener"/> class.
+            </summary>
+            <param name="requestQueueConnectionString">The connection string as shown in the Azure management web</param>
+            <param name="requestQueueName">Queue which queries are sent over. i.e. the queue that this class is going to read from. Name as specified in the Azure management web.</param>
+            <param name="replyConnectionString"></param>
+            <param name="replyQueueName">Queue which query results are sent back on. i.e. the queue that this class is going to send responses on. Name as specified in the Azure management web. Dialogs must have been activated for this queue.</param>
+            <param name="container"></param>
+            <remarks>
+            <para>Dialogs must have been configured for the result queue. See class documentation.</para>
+            <para>It's recommended that the queue timeouts are low (couple of seconds) if the clients are web users. Otherwise you'll get a lot of work done without anyone using the result (as web users can have gone to another page instead).</para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            requestQueueConnectionString
+            or
+            queueName
+            </exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener.Dispose">
+            <summary>
+            Closes both queues and closes the session.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener.SuccessTask">
+            <summary>
+            Task to invoke when a query have been handled successfully (like resolve and commit an unit of work).
+            </summary>
+            <example>
+            <code>
+            <![CDATA[
+            bus.SuccessTask = container => { container.Resolve<IUnitOfWork>().SaveChanges(); };
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="E:WindowsAzure.ServiceBus.Cqs.AzureRequestReplyBusListener.BusFailed">
+            <summary>
+                Invoked every time an exception is thrown for the query bus which is not related to a specific query.
+            </summary>
+            <remarks>
+            <para>this event typically means that the bus is in an inconsistent state. You probably have to recreate it.</para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs">
+            <summary>
+                Arguments for the command bus error event.
+            </summary>
+            <remarks>
+            <para>It's recommended that you set the <see cref="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.MessageTask"/> property when receiving this event argument.</para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.#ctor(Microsoft.ServiceBus.Messaging.BrokeredMessage,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs"/> class.
+            </summary>
+            <param name="message">Message that we failed to handle.</param>
+            <param name="exception">Exception that was thrown during the message processing.</param>
+            <exception cref="T:System.ArgumentNullException">message</exception>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.Message">
+            <summary>
+                Message that we failed to handle
+            </summary>
+            <remarks>
+            <para>
+            Might be null if it's the actual message receiving that failed.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.Exception">
+            <summary>
+                Exception that was thrown during the message processing.
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs.MessageTask">
+            <summary>
+                Action to take.
+            </summary>
+            <value>
+            Default is <see cref="F:WindowsAzure.ServiceBus.Cqs.MessageHandling.PutMessageBackInQueue"/>.
+            </value>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.Configuration.AppConfigProvider">
+            <summary>
+            Reads configuration settings from <c>ConfigurationManager</c> (i.e. web/app.config);
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.Configuration.ISettingsProvider">
+            <summary>
+            Do abstract away where the settings are stored.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Configuration.ISettingsProvider.GetAppSetting(System.String)">
+            <summary>
+            Get an application setting
+            </summary>
+            <param name="name">Name of the configuration setting</param>
+            <returns>Name</returns>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">The specified setting was not found.</exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Configuration.AppConfigProvider.GetAppSetting(System.String)">
+            <summary>
+            Get an application setting
+            </summary>
+            <param name="name">Name of the configuration setting</param>
+            <returns>
+            Name
+            </returns>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException"></exception>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.Configuration.CloudConfigProvider">
+            <summary>
+            Uses <c>CloudConfigurationManager</c>.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Configuration.CloudConfigProvider.GetAppSetting(System.String)">
+            <summary>
+            Get an application setting
+            </summary>
+            <param name="name">Name of the configuration setting</param>
+            <returns>
+            Name
+            </returns>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException"></exception>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.ExceptionEventArgs">
+            <summary>
+                Something has thrown an exception, typically in the background.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.ExceptionEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.BusMessageErrorEventArgs"/> class.
+            </summary>
+            <param name="exception">Exception that was thrown during the message processing.</param>
+            <exception cref="T:System.ArgumentNullException">exception</exception>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.ExceptionEventArgs.Exception">
+            <summary>
+                Exception that was thrown during the message processing.
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.FatalBusException">
+            <summary>
+                Command bus is broken and can not recover. Create a new command bus instance.
+            </summary>
+            <remarks>
+                <para>
+                    Something is wrong with the created Azure message queue. You need to check the configuration, network access
+                    etc.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> class.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.FatalBusException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.FatalBusException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+              <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
+              </PermissionSet>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.InversionOfControl.IChildContainer">
+            <summary>
+            A scoped container.
+            </summary>
+            <remarks>
+            <para>
+            All scoped <c>IDisposable</c> that has been resolved should be disposed when the child container is disposed.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.InversionOfControl.IChildContainer.ResolveAll``1">
+            <summary>
+            Resolve all implementations of the specified service.
+            </summary>
+            <typeparam name="T">Type of service</typeparam>
+            <returns>A list of implementations (or an empty list if no implementations was found)</returns>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer">
+            <summary>
+            Inversion of control container-
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.InversionOfControl.IContainer.CreateChildContainer">
+            <summary>
+            Create a new scoped container
+            </summary>
+            <returns>Scoped container.</returns>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.MessageHandling">
+            <summary>
+            Task to take if we failed to handle a message on one of the bus'es.
+            </summary>
+        </member>
+        <member name="F:WindowsAzure.ServiceBus.Cqs.MessageHandling.PutMessageBackInQueue">
+            <summary>
+            Put the message back in the queue (as the first message to be processed)
+            </summary>
+        </member>
+        <member name="F:WindowsAzure.ServiceBus.Cqs.MessageHandling.RemoveMessage">
+            <summary>
+            Remove the message from the queue.
+            </summary>
+        </member>
+        <member name="F:WindowsAzure.ServiceBus.Cqs.MessageProperties.PayloadTypeName">
+            <summary>
+            AssemblyQualifiedName
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException">
+            <summary>
+                We've find multiple handlers for a message type where only one handler is expected (like commands and queries).
+            </summary>
+            <remarks>
+                <para>Thrown when we've found multiple handlers for the same message type.</para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+                Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException"/> class.
+            </summary>
+            <param name="messageType">Message being handled.</param>
+            <param name="handlers">All found handlers.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="!:MyException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+              <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
+              </PermissionSet>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException.MessageType">
+            <summary>
+                Message being handled
+            </summary>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.MultipleHandlersException.Handlers">
+            <summary>
+                All found handlers.
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.NamespaceDoc">
+            <summary>
+            <a href="http://martinfowler.com/bliki/CommandQuerySeparation.html">Command/Query separation</a> library.
+            </summary>
+            <remarks>
+            <para>
+            This library takes the process a bit further than CQS to further decouple your application. We have four different types of message objects.
+            </para>
+            <list type="table">
+            <item>
+            <term>Command</term>
+            <description>Just as in the CQS definition commands may not return a value. You should therefore assign any ID's before sending away a command. Commands
+            are used to modify state in your application. We strongly recommend that a command wrap an entire use case and not just a part of it. Else it will be difficult to scale (now or in the future).
+            </description>
+            </item>
+            <item>
+            <term>Query</term>
+            <description>
+            Queries are used to read data. They should not modify anything. Do not try to make queries generic, make them specific for each use case.
+            </description>
+            </item>
+            <item>
+            <term>Application event</term>
+            <description>
+            Application events are used to notify the entire application of state changes. Like a user have logged in or that a new forum post have been submitted. These events are used
+            to allow different parts of your system interact in a loosely coupled way. It's even possible that the different parts are in different Azure Cloud Services (but then you have to use Queue Topics).
+            </description>
+            </item>
+            <item>
+            <term>The last option is Request/Reply</term>
+            <description>
+            It's when you absolutely require to get a result back from a modification operation. i.e. like a command with a result. You should prefer to use commands over request/reply as
+            the former will perform better.
+            </description>
+            </item>
+            </list>
+            <para>
+            We strongly recommend that you 
+            </para>
+            </remarks>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.NoHandlerException">
+            <summary>
+                No handler was found for the specified message type (command, application event, query or request/reply).
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.NoHandlerException.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.NoHandlerException"/> class.
+            </summary>
+            <param name="messageType">Message that we did not find a handler for.</param>
+            <exception cref="T:System.ArgumentNullException">MessageTypeName</exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.NoHandlerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.NoHandlerException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.NoHandlerException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+              <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
+              </PermissionSet>
+        </member>
+        <member name="P:WindowsAzure.ServiceBus.Cqs.NoHandlerException.MessageTypeName">
+            <summary>
+                Type.FullName of the message that we did not find a handler for.
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.Serializer.JsonSerializer">
+            <summary>
+                Uses JSON.NET to deserialize bodies.
+            </summary>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.Serializer.Serializer">
+            <summary>
+            Serializer used to serialize messages before sending them over Azure queues.
+            </summary>
+            <remarks>
+            <para>
+            By default we let the <see cref="T:Microsoft.ServiceBus.Messaging.BrokeredMessage"/> serialize the message (which uses the DataContractSerializer internally). Switch serializer if you need a more flexible one.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:WindowsAzure.ServiceBus.Cqs.Serializer.Serializer.Instance">
+            <summary>
+            Assign a new serializer by using this property.
+            </summary>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Serializer.Serializer.Serialize(System.Object)">
+            <summary>
+            Serialize a new message.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Brokered message which the entity as it's body.</returns>
+            <exception cref="T:System.ArgumentNullException">entity</exception>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Serializer.Serializer.Deserialize``1(Microsoft.ServiceBus.Messaging.BrokeredMessage)">
+            <summary>
+            Deserialize a message from a brokered message
+            </summary>
+            <typeparam name="T">Type of entity to deserialize from the message body</typeparam>
+            <param name="message">Message which contains a body to deserialize</param>
+            <returns>
+            Deserialized entity.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">message</exception>
+            <exception cref="T:System.NotSupportedException">If the body can not be deserialized.</exception>
+        </member>
+        <member name="F:WindowsAzure.ServiceBus.Cqs.Serializer.JsonSerializer.Settings">
+            <summary>
+                Settings used during serialization and deserialization. Feel free to reconfigure.
+            </summary>
+            <remarks>
+                <para>
+                    Only change from the default configuration is that we set
+                    <c>ConstructorHandling.AllowNonPublicDefaultConstructor</c>.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Serializer.JsonSerializer.Serialize(System.Object)">
+            <summary>
+                Serialize a new message.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+                Brokered message which the entity as it's body.
+            </returns>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.Serializer.JsonSerializer.Deserialize``1(Microsoft.ServiceBus.Messaging.BrokeredMessage)">
+            <summary>
+                Deserialize a message from a brokered message
+            </summary>
+            <typeparam name="T">Type of entity to deserialize from the message body</typeparam>
+            <param name="message">Message which contains a body to deserialize</param>
+            <returns>
+                Deserialized entity.
+            </returns>
+        </member>
+        <member name="T:WindowsAzure.ServiceBus.Cqs.UnknownMessageException">
+            <summary>
+                A message which was not created by this library.
+            </summary>
+            <remarks>
+                <para>Did you manage to send a message from your own code to this queue?</para>
+            </remarks>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.UnknownMessageException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.UnknownMessageException"/> class.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+        </member>
+        <member name="M:WindowsAzure.ServiceBus.Cqs.UnknownMessageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WindowsAzure.ServiceBus.Cqs.UnknownMessageException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+    </members>
+</doc>

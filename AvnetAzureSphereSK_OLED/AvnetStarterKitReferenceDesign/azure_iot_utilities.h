@@ -16,6 +16,8 @@ bool moveRight;
 bool moveForward;
 bool moveBack;
 bool moveStop;
+bool speedUp;
+bool slowDown;
 
 /// <summary>
 ///     Sets up the client in order to establish the communication channel to Azure IoT Hub.

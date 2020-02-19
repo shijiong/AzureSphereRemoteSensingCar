@@ -53,21 +53,23 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pressure = new System.Windows.Forms.Label();
-            this.altitude = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.temperature = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.light = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.rssi = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.light = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.temperature = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.altitude = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pressure = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonForward = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
+            this.buttonSpeedup = new System.Windows.Forms.Button();
+            this.buttonSlowdown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -377,59 +379,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Enviroment";
             // 
-            // label2
+            // rssi
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 24);
-            this.label2.TabIndex = 50;
-            this.label2.Text = "Pressure:";
+            this.rssi.AutoSize = true;
+            this.rssi.Location = new System.Drawing.Point(102, 120);
+            this.rssi.Name = "rssi";
+            this.rssi.Size = new System.Drawing.Size(40, 24);
+            this.rssi.TabIndex = 59;
+            this.rssi.Text = "null";
             // 
-            // pressure
+            // label12
             // 
-            this.pressure.AutoSize = true;
-            this.pressure.Location = new System.Drawing.Point(102, 24);
-            this.pressure.Name = "pressure";
-            this.pressure.Size = new System.Drawing.Size(40, 24);
-            this.pressure.TabIndex = 51;
-            this.pressure.Text = "null";
-            // 
-            // altitude
-            // 
-            this.altitude.AutoSize = true;
-            this.altitude.Location = new System.Drawing.Point(102, 48);
-            this.altitude.Name = "altitude";
-            this.altitude.Size = new System.Drawing.Size(40, 24);
-            this.altitude.TabIndex = 53;
-            this.altitude.Text = "null";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 24);
-            this.label8.TabIndex = 52;
-            this.label8.Text = "Altitude:";
-            // 
-            // temperature
-            // 
-            this.temperature.AutoSize = true;
-            this.temperature.Location = new System.Drawing.Point(102, 72);
-            this.temperature.Name = "temperature";
-            this.temperature.Size = new System.Drawing.Size(40, 24);
-            this.temperature.TabIndex = 55;
-            this.temperature.Text = "null";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 72);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 24);
-            this.label9.TabIndex = 54;
-            this.label9.Text = "Temp:";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 120);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(56, 24);
+            this.label12.TabIndex = 58;
+            this.label12.Text = "RSSI:";
             // 
             // light
             // 
@@ -449,23 +415,59 @@
             this.label11.TabIndex = 56;
             this.label11.Text = "Light:";
             // 
-            // rssi
+            // temperature
             // 
-            this.rssi.AutoSize = true;
-            this.rssi.Location = new System.Drawing.Point(102, 120);
-            this.rssi.Name = "rssi";
-            this.rssi.Size = new System.Drawing.Size(40, 24);
-            this.rssi.TabIndex = 59;
-            this.rssi.Text = "null";
+            this.temperature.AutoSize = true;
+            this.temperature.Location = new System.Drawing.Point(102, 72);
+            this.temperature.Name = "temperature";
+            this.temperature.Size = new System.Drawing.Size(40, 24);
+            this.temperature.TabIndex = 55;
+            this.temperature.Text = "null";
             // 
-            // label12
+            // label9
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 120);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(56, 24);
-            this.label12.TabIndex = 58;
-            this.label12.Text = "RSSI:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 72);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 24);
+            this.label9.TabIndex = 54;
+            this.label9.Text = "Temp:";
+            // 
+            // altitude
+            // 
+            this.altitude.AutoSize = true;
+            this.altitude.Location = new System.Drawing.Point(102, 48);
+            this.altitude.Name = "altitude";
+            this.altitude.Size = new System.Drawing.Size(40, 24);
+            this.altitude.TabIndex = 53;
+            this.altitude.Text = "null";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 24);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "Altitude:";
+            // 
+            // pressure
+            // 
+            this.pressure.AutoSize = true;
+            this.pressure.Location = new System.Drawing.Point(102, 24);
+            this.pressure.Name = "pressure";
+            this.pressure.Size = new System.Drawing.Size(40, 24);
+            this.pressure.TabIndex = 51;
+            this.pressure.Text = "null";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 24);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "Pressure:";
             // 
             // buttonForward
             // 
@@ -514,7 +516,7 @@
             // buttonStop
             // 
             this.buttonStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
-            this.buttonStop.Location = new System.Drawing.Point(321, 245);
+            this.buttonStop.Location = new System.Drawing.Point(318, 246);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(96, 35);
             this.buttonStop.TabIndex = 54;
@@ -522,12 +524,36 @@
             this.buttonStop.UseVisualStyleBackColor = true;
             this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
+            // buttonSpeedup
+            // 
+            this.buttonSpeedup.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
+            this.buttonSpeedup.Location = new System.Drawing.Point(266, 246);
+            this.buttonSpeedup.Name = "buttonSpeedup";
+            this.buttonSpeedup.Size = new System.Drawing.Size(49, 35);
+            this.buttonSpeedup.TabIndex = 55;
+            this.buttonSpeedup.Text = "+";
+            this.buttonSpeedup.UseVisualStyleBackColor = true;
+            this.buttonSpeedup.Click += new System.EventHandler(this.buttonSpeedup_Click);
+            // 
+            // buttonSlowdown
+            // 
+            this.buttonSlowdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
+            this.buttonSlowdown.Location = new System.Drawing.Point(417, 246);
+            this.buttonSlowdown.Name = "buttonSlowdown";
+            this.buttonSlowdown.Size = new System.Drawing.Size(49, 35);
+            this.buttonSlowdown.TabIndex = 56;
+            this.buttonSlowdown.Text = "-";
+            this.buttonSlowdown.UseVisualStyleBackColor = true;
+            this.buttonSlowdown.Click += new System.EventHandler(this.buttonSlowdown_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(981, 390);
+            this.Controls.Add(this.buttonSlowdown);
+            this.Controls.Add(this.buttonSpeedup);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
@@ -601,6 +627,8 @@
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonStop;
+        private System.Windows.Forms.Button buttonSpeedup;
+        private System.Windows.Forms.Button buttonSlowdown;
     }
 }
 

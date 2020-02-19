@@ -516,6 +516,8 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HA
 		moveForward = false;
 		moveBack = false;
 		moveStop = false;
+        speedUp = false;
+        slowDown = false;
 	}
 	if (str_msg[0] == 'R')
 	{
@@ -524,6 +526,8 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HA
 		moveForward = false;
 		moveBack = false;
 		moveStop = false;
+        speedUp = false;
+        slowDown = false;
 	}
 	if (str_msg[0] == 'F')
 	{
@@ -532,6 +536,8 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HA
 		moveForward = true;
 		moveBack = false;
 		moveStop = false;
+        speedUp = false;
+        slowDown = false;
 	}
 	if (str_msg[0] == 'B')
 	{
@@ -540,6 +546,8 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HA
 		moveForward = false;
 		moveBack = true;
 		moveStop = false;
+        speedUp = false;
+        slowDown = false;
 	}
 	if (str_msg[0] == 'S')
 	{
@@ -548,8 +556,29 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HA
 		moveForward = false;
 		moveBack = false;
 		moveStop = true;
+        speedUp = false;
+        slowDown = false;
 	}
-
+    if (str_msg[0] == 'U')
+    {
+        moveLeft = false;
+        moveRight = false;
+        moveForward = false;
+        moveBack = false;
+        moveStop = false;
+        speedUp = true;
+        slowDown = false;
+    }
+    if (str_msg[0] == 'D')
+    {
+        moveLeft = false;
+        moveRight = false;
+        moveForward = false;
+        moveBack = false;
+        moveStop = false;
+        speedUp = false;
+        slowDown = true;
+    }
     LogMessage("INFO: Received message '%s' from IoT Hub\n", str_msg);
     free(str_msg);
 
